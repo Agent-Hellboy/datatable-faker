@@ -38,11 +38,10 @@ Installation
       
 
 Example
--------
-
-
+=======
 
 .. code:: py
+
     from dataclasses import dataclass
 
     @dataclass()
