@@ -10,7 +10,7 @@ def read(fname):
 setup(
     name="datatable-faker",
     author="Prince Roshan",
-    version='0.1.0',
+    version='0.1.2',
     author_email="princekrroshan01@gmail.com",
     url="https://github.com/Agent-Hellboy/datatable-faker",
     description=("Library to generate fake datatable for unittest "),
