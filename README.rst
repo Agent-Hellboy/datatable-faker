@@ -1,7 +1,7 @@
 datatable-faker
 ================
 
-    Library to generate fake datatable for unittest 
+Library to generate fake datatable for unittest 
 
 .. image:: https://img.shields.io/pypi/v/datatable-faker
    :target: https://pypi.python.org/pypi/datatable-faker/
