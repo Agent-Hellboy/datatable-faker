@@ -21,6 +21,7 @@ setup(
     keywords=[
         "faker","datatable-faker"
     ],
+    install_requires=["faker"],
     python_requires=">=3.7",
     classifiers=[
         "Programming Language :: Python :: 3.7",
