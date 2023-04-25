@@ -58,9 +58,7 @@ Example
 
     fake_data = generate_fake_data(Heartbeat)
     print(fake_data)
-
-::
-
+    
     Heartbeat(serialNumber='economic', cbsdId='pull', grantId='save', grantState='same', carrier=729, maxEirp=1792)
 
 Contributing
