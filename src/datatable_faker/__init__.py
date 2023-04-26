@@ -1,12 +1,9 @@
 from typing import get_type_hints, List, Dict
 from faker import Faker
 
-fake = Faker()
+import dataclasses
 
-class BaseModel:
-    def __init__(self, **kwargs):
-        for key, value in kwargs.items():
-            setattr(self, key, value)
+fake = Faker()
 
 def generate_fake_data(cls):
     fake_data = {}
@@ -37,6 +34,6 @@ def generate_fake_data(cls):
             fake_data[attribute_name] = {fake.word(): fake.pyfloat() for _ in range(3)}
         elif attribute_type == Dict[str, bool]:
             fake_data[attribute_name] = {fake.word(): fake.boolean() for _ in range(3)}
-        elif issubclass(attribute_type, BaseModel):
+        elif dataclasses.is_dataclass(attribute_type):
             fake_data[attribute_name] = generate_fake_data(attribute_type)
     return cls(**fake_data)
