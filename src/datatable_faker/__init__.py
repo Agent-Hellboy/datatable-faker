@@ -54,7 +54,7 @@ def generate_fake_data_from_pydentic(model_class: Type[BaseModel]) -> BaseModel:
         elif field_type is bool:
             fake_data[field.name] = fake.boolean()
         elif issubclass(field_type, BaseModel):
-            fake_data[field.name] = generate_fake_dataa_from_pydentic(field_type)
+            fake_data[field.name] = generate_fake_data_from_pydentic(field_type)
         elif field_type is List[int]:
             fake_data[field.name] = [fake.random_int() for _ in range(3)]
         elif field_type is List[float]:
