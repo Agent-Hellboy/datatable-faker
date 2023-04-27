@@ -54,7 +54,7 @@ def generate_fake_data_from_pydentic(model_class: Type[BaseModel]) -> BaseModel:
         elif field_type is bool:
             fake_data[field.name] = fake.boolean()
         elif issubclass(field_type, BaseModel):
-            fake_data[field.name] = generate_fake_data(field_type)
+            fake_data[field.name] = generate_fake_data_from_pydentic(field_type)
         elif field_type is List[int]:
             fake_data[field.name] = [fake.random_int() for _ in range(3)]
         elif field_type is List[float]:
@@ -76,7 +76,7 @@ def generate_fake_data_from_pydentic(model_class: Type[BaseModel]) -> BaseModel:
             fake_data[field.name] = {fake.word(): fake.boolean() for _ in range(3)}
         elif field_type.__origin__ is dict:
             key_type, value_type = field_type.__args__
-            fake_data[field.name] = {generate_fake_data(key_type): generate_fake_data(value_type) for _ in range(3)}
+            fake_data[field.name] = {generate_fake_data_from_pydentic(key_type): generate_fake_data_from_pydentic(value_type) for _ in range(3)}
         elif field_type is Tuple[int, str]:
             fake_data[field.name] = (fake.random_int(), fake.word())
         elif field_type is Tuple[int, str, bool]:
@@ -85,12 +85,12 @@ def generate_fake_data_from_pydentic(model_class: Type[BaseModel]) -> BaseModel:
             fake_data[field.name] = (fake.random_int(), fake.word(), fake.boolean(), fake.pyfloat())
         elif field_type.__origin__ is tuple:
             inner_types = field_type.__args__
-            fake_data[field.name] = tuple(generate_fake_data(inner_type) for inner_type in inner_types)
+            fake_data[field.name] = tuple(generate_fake_data_from_pydentic(inner_type) for inner_type in inner_types)
         elif field_type is Union[int, str]:
             fake_data[field.name] = fake.random_element([fake.random_int(), fake.word()])
         elif field_type is Optional[int]:
             fake_data[field.name] = fake.random_element([fake.random_int(), None])
         elif field_type.__origin__ is Union:
             inner_types = field_type.__args__
-            fake_data[field.name] = fake.random_element([generate_fake_data(inner_type) for inner_type in inner_types])
+            fake_data[field.name] = fake.random_element([generate_fake_data_from_pydentic(inner_type) for inner_type in inner_types])
     return model_class(**fake_data)
