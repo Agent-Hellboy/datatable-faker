@@ -10,10 +10,11 @@ def read(fname):
 setup(
     name="datatable-faker",
     author="Prince Roshan",
-    version='0.1.4',
+    version='0.1.7',
     author_email="princekrroshan01@gmail.com",
     url="https://github.com/Agent-Hellboy/datatable-faker",
     description="Library to generate fake datatable for unittest ",
+    long_description_content_type='text/x-rst',
     long_description=read("README.rst"),
     license="MIT",
     package_dir={'': 'src'},
